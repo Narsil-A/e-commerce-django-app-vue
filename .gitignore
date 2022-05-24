@@ -3,6 +3,5 @@ node_modules
 .txt
 db.sqlite3
 __pycache__
-src
 dist
 *log

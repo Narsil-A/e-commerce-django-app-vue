@@ -74,6 +74,7 @@ Recipe: E-commerce Website With Django and Vue Tutorial (Django Rest Framework)
 - view a product: 
 
 - Sette opp vuex/state: src-store-index.js add cart items, Authentication, login. 
-- Make it possible to add to the cart: add funtionalities to the vuex, mutations create initializestore(state). 
+- Make it possible to add to the cart: 
+    - Add funtionalities to the vuex, mutations create initializestore(state). 
                                        to store items in the local store of the web. 
    
