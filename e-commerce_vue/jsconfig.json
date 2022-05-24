@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "experimentalImplicitWrapComponentOptionsWithDefineComponent":true,
     "jsx": "preserve", //added fixed error "TypeScript intellisense is disabled on template"
     "target": "es5",
     "module": "esnext",
