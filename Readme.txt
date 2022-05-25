@@ -77,4 +77,4 @@ Recipe: E-commerce Website With Django and Vue Tutorial (Django Rest Framework)
 - Make it possible to add to the cart: 
     - Add funtionalities to the vuex, mutations create initializestore(state). 
                                        to store items in the local store of the web. 
-   
+    - initialize store in app.vue: beforeCreated()
