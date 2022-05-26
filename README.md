@@ -83,6 +83,11 @@
 
     - initialize store in app.vue: beforeCreated() computed function 
     
-    - add button to product page: computed function 
+    - add button to product page: computed function
 
+    - install bullma toast
+
+- implement a loading bar: store/index.js mutations: setIsLoading(state, status),
+                           product.vue methods: store.commit setisloading true. in the final, we set set loading is false. 
+                           app.vue, add div for loading bar. add styling, go donw the bottom. 
     
