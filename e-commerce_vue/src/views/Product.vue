@@ -58,7 +58,8 @@ export default {
             await axios
                 .get(`/api/v1/products/${category_slug}/${product_slug}`) //need special quotes so we can get the corret url
                 .then(response=> {
-                     this.product = response.data                                //retrive data from the server
+                     this.product = response.data
+                     document.title = this.product.name + ' | Petstore'                                                    //retrive data from the server
                }) 
                 .catch(error => {
                     console.log(error)

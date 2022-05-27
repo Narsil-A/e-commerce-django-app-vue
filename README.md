@@ -90,4 +90,12 @@
 - implement a loading bar: store/index.js mutations: setIsLoading(state, status),
                            product.vue methods: store.commit setisloading true. in the final, we set set loading is false. 
                            app.vue, add div for loading bar. add styling, go donw the bottom. 
-    
+
+- set document title to all pages: product.vue bellow axios: document.title = this.product.name + ' | Petstore' 
+                                   home.vue: mounted: document.title = ' Home | Petstore' 
+- view categories: views.py: class CategoryDetail(APIView). 
+                   serializers.py: class CategorySerializer
+                   urls.py(product): import products path views.CategoryDetail
+
+                   view(vue): create a Category.vue
+        

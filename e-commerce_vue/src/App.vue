@@ -13,8 +13,8 @@
 
       <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active' : showMobileMenu}"> 
         <div class="navbar-end">
-          <router-link to="/summer" class="navbar-item">Dog</router-link> 
-          <router-link to="/winter" class="navbar-item">Cat</router-link> 
+          <router-link to="/dog" class="navbar-item">Dog</router-link> 
+          <router-link to="/cat" class="navbar-item">Cat</router-link> 
 
           <div class="navbar-item">
             <div class="buttons">
