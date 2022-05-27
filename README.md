@@ -97,5 +97,12 @@
                    serializers.py: class CategorySerializer
                    urls.py(product): import products path views.CategoryDetail
 
-                   view(vue): create a Category.vue
+                   view(vue): create a Category.vue: ProductBox, components, 
+
+- add search functionality: views.py add the new functionality, import rest.framework.decorators (@api_view(['POST']))
+                            urls.py path('products/search/', views.search)(above of category_slug path)
+                            App.vue: above navbar add the search button. <form method="get" action="/search"> 
+                            
+
+
         
