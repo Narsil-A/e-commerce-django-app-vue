@@ -105,6 +105,6 @@
                             
 - view cart: make posible increment or decrement the content.
             - create Cart.vue 
-
+- make posible sign up 
 
         
