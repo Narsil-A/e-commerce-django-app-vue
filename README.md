@@ -103,6 +103,8 @@
                             urls.py path('products/search/', views.search)(above of category_slug path)
                             App.vue: above navbar add the search button. <form method="get" action="/search"> 
                             
+- view cart: make posible increment or decrement the content.
+            - create Cart.vue 
 
 
         

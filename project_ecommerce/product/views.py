@@ -16,16 +16,16 @@ class LatestProductsList(APIView):
         return Response(serializer.data)
     
 class ProductDetail(APIView):
-    def get_object(self, category_slug, product_slug):
+    def get_object(self, category_slug, product_slug): #check if the product exists 
         try:
-            return Product.objects.filter(category__slug=category_slug).get(slug=product_slug)
-        except Product.DoesNotExist:
-            raise Http404
+            return Product.objects.filter(category__slug=category_slug).get(slug=product_slug) #we filter every product that is inside
+        except Product.DoesNotExist:                                                           #get the slug of the products if exist, and 
+            raise Http404        #raise 404 error, from django.http                            #if it doesnt exist we will get and exeption
         
-    def get(self, request, category_slug, product_slug, format=None):
+    def get(self, request, category_slug, product_slug, format=None): #get the product function
         product = self.get_object(category_slug, product_slug)
         serializer = ProductSerializer(product)
-        return Response(serializer.data)    
+        return Response(serializer.data)    #passing the serializer 
     
 class CategoryDetail(APIView):
     def get_object(self, category_slug):
@@ -41,13 +41,13 @@ class CategoryDetail(APIView):
     
     
     
-@api_view(['POST'])
-def search(request):
-    query = request.data.get('query', '')
+@api_view(['POST']) #decorator to accept post request to this view
+def search(request): #search query 
+    query = request.data.get('query', '') #get the query from request data, if its empty, is empty. 
     
     if query:
-        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query)) #check if the name contains the query
+        serializer = ProductSerializer(products, many=True)                                           #or description 
+        return Response(serializer.data)      #return data json                                       #import Q function of djando, allows to make advanced query sets
     else: 
-        return Response({"products":[]})
+        return Response({"products":[]}) #if the query is empty, return a empty product list 
