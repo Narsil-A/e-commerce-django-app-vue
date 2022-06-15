@@ -15,16 +15,16 @@
                    </div>
 
                    <div class="field">
-                       <label>Passsword</label>
+                       <label>Password</label>
                        <div class="control">
-                           <input type="password" class="input" v-model="passsword">
+                           <input type="password" class="input" v-model="password">
                        </div>
                     </div>
 
                     <div class="field">
-                       <label>Repeat Passsword</label>
+                       <label>Repeat Password</label>
                        <div class="control">
-                           <input type="password" class="input" v-model="passsword2">
+                           <input type="password" class="input" v-model="password2">
                        </div>
                     </div>
 
@@ -53,54 +53,65 @@
 
 <script>
 import axios from 'axios'
-import { toast} from 'bulma-toast'
+import { toast } from 'bulma-toast'
 
+export default {
+    name:'SignUp',
+    data() {
+        return {
+            username:'',
+            password:'',
+            password2:'',
+            errors:[]
+        } 
+    },
+    methods: {
+        submitForm() {
+            this.errors = []
 
-export default  {
-  name:'SignUp',
-  data() {
-      return {
-          username:'',
-          passsword:'',
-          passsword2:'',
-          errors:[]
-    } 
-  },
-  methods: {
-      submitForm() {
-          this.errors = []
-
-          if (this.username === '') {
-              this.error.push('The username is missing')
-          }
-
-          if (this.password === '') {
-              this.error.push('The password is too short')
-          }
-
-          if (this.password !== this.passsword2) {
-              this.error.push('The password doesn\'t match')
-          }
-
-          if (!this.errors.length){
+            if (this.username === '') {
+                this.errors.push('The username is missing')
+            }
+            if (this.password === '') {
+                this.errors.push('The password is too short')
+            }
+            if (this.password !== this.password2) {
+                this.errors.push('The password doesn\'t match')
+            }
+            if (!this.errors.length){
               const formData = {
                   username: this.username,
-                  passsword: this.passsword
+                  password: this.password
               }
               axios
-              .post('/api/v1/users/', formData)
-              .then(response =>{
-                  toast ({
-                      message: 'Account created, please log in!',
-                      type: 'is-success',
-                      dismissible: true,
-                      pauseOnHover: true,
-                      duration: 2000,
-                      position: 'bottom-right',
-                  })
+                  .post("/api/v1/users/", formData)
+                  .then(response => {
+                      toast({
+                          message: 'Account created, please log in!',
+                          type: 'is-success',
+                          dismissible: true,
+                          pauseOnHover: true,
+                          duration: 2000,
+                          position: 'bottom-right',
 
-                  this.$router.push('/log-in')
-              })
+                        })
+
+                        this.$router.push('/log-in')
+                    })
+                    .catch(error => {
+                        if (error.response) {
+                            for (const property in error.response.data) {
+                                this.errors.push(`${property}: ${error.response.data[property]}`)
+                            }
+
+                           console.log(JSON.stringify(error.response.data))
+                        } else if (error.message){
+                            this.errors.push('Something went wrong. Please try again')
+
+                            console.log(JSON.stringify(error))
+
+                        }
+                    })  
             }
         }
 

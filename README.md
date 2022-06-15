@@ -107,4 +107,6 @@
             - create Cart.vue 
 - make posible sign up 
 
+- 
+
         

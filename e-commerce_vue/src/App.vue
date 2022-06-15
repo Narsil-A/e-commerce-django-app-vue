@@ -67,6 +67,8 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 export default {  //for export function 
   data() {
     return {
@@ -78,6 +80,15 @@ export default {  //for export function
   },
   beforeCreate() {
     this.$store.commit('initializeStore')
+    
+    const token = this.$store.state.token
+
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = "token" + token
+    } else {
+      axios.defaults.headers.common['Authorization'] = ""
+    }
+
   },
   mounted() {
     this.cart = this.$store.state.cart
