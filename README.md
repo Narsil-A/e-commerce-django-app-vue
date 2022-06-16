@@ -105,8 +105,11 @@
                             
 - view cart: make posible increment or decrement the content.
             - create Cart.vue 
-- make posible sign up 
 
-- 
+- make posible sign up:
 
-        
+- account page:
+        -create MyAccount.Vue : <Scripts> </Scripts>
+        -change button log in for my account in my account page (App.vue). 
+
+- checkout page: create Checkout.vue 
