@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STRIPE_SECRET_KEY = 'sk_test_51LBiQyKl5OBGY7fu4rRxSQ4REEXzXfY8Rnj00oMVyGC5RHKbeGYXnpG1f52gqBbJUXt8fn83KjpziD0HehIEf3m500m3t8NxSs'
+
 
 # Application definition
 
@@ -41,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
-    'product' #app
+    'product', #app1
+    'order'    #app2
 ]
 
 CORS_ALLOWED_ORIGINS = [ "http://localhost:8080",
