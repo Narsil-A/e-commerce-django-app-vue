@@ -113,3 +113,5 @@
         -change button log in for my account in my account page (App.vue). 
 
 - checkout page: create Checkout.vue 
+
+- success page: create Success.Vue 
