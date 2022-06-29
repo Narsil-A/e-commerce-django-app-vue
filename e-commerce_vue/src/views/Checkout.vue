@@ -118,7 +118,6 @@
 
 <script>
 import axios from 'axios'
-
 export default {
     name: 'Checkout',
     data() {
@@ -139,18 +138,18 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Checkout | PetStore'
+        document.title = 'Checkout | Petstore'
 
         this.cart = this.$store.state.cart
-//here is the problem
-        if (this.cartTotalLength > 0) { //if is greater that 0, that have products in the cart
-            this.stripe = Stripe('sk_test_51LBiQyKl5OBGY7fu4rRxSQ4REEXzXfY8Rnj00oMVyGC5RHKbeGYXnpG1f52gqBbJUXt8fn83KjpziD0HehIEf3m500m3t8NxSs')
+
+        if (this.cartTotalLength > 0) {
+            this.stripe = Stripe('pk_test_51LD9B4Hg5MZzC85xZXuoQoCRw0KU891Zlhrdt7LNr0B72xYMvG0U4QMCOVS1G3hWWklGIc87bHDucCOJhJ2Iz3tJ00OX8ALyk8')
             const elements = this.stripe.elements();
-            this.card = elements.create('card', { hidePostalCode: true }) //hide the postal code 
-            
+            this.card = elements.create('card', { hidePostalCode: true })
+
             this.card.mount('#card-element')
         }
-    }, //
+    },
     methods: {
         getItemTotal(item) {
             return item.quantity * item.product.price
@@ -179,10 +178,10 @@ export default {
             if (this.place === '') {
                 this.errors.push('The place field is missing!')
             }
-            if (!this.errors.length) { //check if the error has length, if there are not errors
-                this.$store.commit('setIsLoading', true) //set is loading to true
+            if (!this.errors.length) {
+                this.$store.commit('setIsLoading', true)
 
-                this.stripe.createToken(this.card).then(result => {  //create the token based on the card information           
+                this.stripe.createToken(this.card).then(result => {                    
                     if (result.error) {
                         this.$store.commit('setIsLoading', false)
 
@@ -190,15 +189,15 @@ export default {
 
                         console.log(result.error.message)
                     } else {
-                        this.stripeTokenHandler(result.token) //if there are not error in the back-end with stripe
+                        this.stripeTokenHandler(result.token)
                     }
                 })
             }
         },
-        async stripeTokenHandler(token) { //sync function
+        async stripeTokenHandler(token) {
             const items = []
 
-            for (let i = 0; i < this.cart.items.length; i++) { //loop through all the items in the card
+            for (let i = 0; i < this.cart.items.length; i++) {
                 const item = this.cart.items[i]
                 const obj = {
                     product: item.product.id,
@@ -206,11 +205,11 @@ export default {
                     price: item.product.price * item.quantity
                 }
 
-                items.push(obj) //push the object to the list of items 
+                items.push(obj)
             }
 
-            const data = { //object with the contact information, all items and stripe token 
-                'first_name': this.first_name, 
+            const data = {
+                'first_name': this.first_name,
                 'last_name': this.last_name,
                 'email': this.email,
                 'address': this.address,
@@ -220,19 +219,17 @@ export default {
                 'items': items,
                 'stripe_token': token.id
             }
-
+            
             await axios
                 .post('/api/v1/checkout/', data)
                 .then(response => {
-                    this.$store.commit('clearCart') //call the store to clear 
-                    this.$router.push('/cart/success') //redirect the user to the success page
+                    this.$store.commit('clearCart')
+                    this.$router.push('/cart/success')
                 })
                 .catch(error => {
                     this.errors.push('Something went wrong. Please try again')
-                    
                     console.log(error)
                 })
-
                 this.$store.commit('setIsLoading', false)
         }
     },

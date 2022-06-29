@@ -23,7 +23,7 @@ def checkout(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY #initialize stripe with secret key from setting file
         paid_amount = sum(item.get('quantity') * item.get('product').price for item in serializer.validated_data['items']) #calculated the paid amount 
 
-        try: #if payment isn't successfull, accept this and show an error to the user
+        try:                                 #if payment isn't successfull, accept this and show an error to the user
             charge = stripe.Charge.create(
                 amount=int(paid_amount * 100), #multiply for 100 cus is need it in cents 
                 currency='USD', #stablish the currency 
