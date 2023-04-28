@@ -1,117 +1,108 @@
-# e-commerce-django-app-vue
-### Recipe: E-commerce Website With Django and Vue Tutorial (Django Rest Framework)
- 
-- Install and setup django: #Done
-  - Creation of virtual environment: $ virtualenv venv1, $ source venv1/Scripts/activate. 
-  - Install django and libraries: $ pip3 install Django, $ pip3 install django-rest-framework(Web browsable API, Authentication policies, Serialization, regular function-based views), 
-    $ pip3 install django-cors-headers(security between API and backend), $ pip3 install djoser (token Authentication user),
-    $ pip3 install pillow(python library for resize image), $ pip3 install stripe (payment method library)
-  - Create a new django project: django-admin startproject project_ecommerce: 
-    manage.py to run administrative task and initialize the database, create superuser, into the folder project_ecommerce we found 
-    a __init__.py that tell python how handle this as package. asgi.py and wsgi.py are the entry point to the web server. 
-    setting.py globally configuration for the whole project. And, urls.py is like the table contents of all the pages in the backend. 
-  - Tell django abouth this package installed, so, go to setting.py, INSTALLED_APPS = [ 'rest_framework', 'rest_framework.authtoken', 
-    'corsheaders', 'djoser'].
-  - Configuration of course headers: add bellow INSTALLED_APPS = [], CORS_ALLOWED_ORIGINS = [ "http://localhost:8080", ]
-    this will be the address to the front, later you will neeed to change to the live server address
-  - In the MIDDLEWARE section , above of CommonMiddleware, put, 'corsheaders.middleware.CorsMiddleware',
-  - Go to the urls.py and include API fonts, djoser, include Pods (represents a single instance of a running process in your cluster).
-    path('api/v1/', include('djoser.urls')), path('api/v1/', include('djoser.urls.authtoken')),. this functionalities allow create
-    users Authentication tokens. 
-  - initialize the database, $ python manage.py makemigrations, $ python manage.py migrate. 
-  - create the superuser. $ python manage.py createsuperuser  
-  - run the server: $ python manage.py runserver
+# Building an E-commerce Website With Django and Vue
 
-- Install and setup (Vue): JavaScript framework for building user interfaces
-                           -Declarative Rendering: Vue extends standard HTML with a template syntax that allows us to 
-                                        declaratively describe HTML output based on JavaScript state.
-                           -Reactivity: Vue automatically tracks JavaScript state 
-                                        changes and efficiently updates the DOM when changes happen.                      
+## In this tutorial, we will create an e-commerce website with Django and Vue. We will use Django Rest Framework to build a RESTful API for our backend and Vue for the frontend
 
-  - Install nodejs
-  - Install Vue cli $ npm install -g @vue/cli
-  - create a projct:$ Vue create e-commerce_vue
-    - select: Manually select features, select the features that going to use to transcribe the code in real JavaScript.
-              Manual features for this app: babel, router, vuex, CSS Pre-processors, and remove linter, choose 3x versior for vue.js,
-                                            use history mode for router, use dart-sass, store in dedicated config files, 
-                                            saved as e-commerce_vue. 
-  - cd e-commerce_vue, npm install axios (to talk to the back-end), npm install bulma (CSS framework)
-  - npm run serve http://localhost:8080/, Network: http://192.168.0.103:8080/ 
-  
-- Include Fond Awesome: put in the index.html (public folder, for icons) bellow <title><%=htmlwebpackpuglin.option,title %></title> 
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+Before we begin, make sure you have the following installed
 
-- Set up the base template: remove the styles css and put - @import '../node_modules/bulma';
-                            bellow <template> put <div id="wrapper">, create a navbar <nav class="navbar is-dark">, <div class="navbar-brand">
-                            add section and buttons. log in, and cart. 
+Python 3
+pip3
+Node.js
+npm
 
-   -inspect the browser for mobile view. Modify App.vue: navbar...@click="showMobileMenu = !showMobileMenu">, v-bind:class="{'is-active' : showMobileMenu}">,                
+### Step 1: Create a Virtual Environment
 
--Back-end: 
-        - creating django app and models for products.
-        - python manage.py startapp 
-          - models.py: where we describe to the database the types of infotmation, 
-            - class category: name, slug, 
-              - class meta: ordering data(tuple), __string__ represetantions,
-                get_absolute_url.
-            - class product: name, slug, description, price, image, thumbnail, date_added. 
-              - class Meta: ordering data(tuple), __string__ represetantions, get_absolute_url, get_image, 
-                get_thumbnail, make_thumbnail. 
-            - register app (models) admin.py 
-            - Add in settings.py: MEDIA_URL = '/media/',  MEDIA_ROOT = BASE_DIR / 'media/', 
-            - Add in urls.py: + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+Creation of a virtual environment is a crucial step in the development process. To create a virtual environment, use the following command: $ virtualenv venv. Then activate the virtual environment using $ source venv/Scripts/activate.
 
-            
-- create serializer and views for the products> get info from the database and retrive in json
-   - create a serealizers.py:
-               import django-rest-framework, and .models, 
-               create the class ProductSerializer, create a class meta and make a model to get the information, and later, configure what field, 
-               with a tuple with the information we will retrive. 
-   - create a urls.py in the product app. 
-                                     
-- create a simple front page: go to the home.
-  - home.Vue: header welcome, list of products.
+After activating the virtual environment, you need to install Django and other required libraries. Use the following commands to install Django and its libraries:
 
-- view a product: 
+### Step 2: Install Django and Required Libraries
 
-- Sette opp vuex/state: src-store-index.js add cart items, Authentication, login. 
+$ pip3 install Django
+$ pip3 install django-rest-framework for Web browsable API, Authentication policies, Serialization, and regular function-based views.
+$ pip3 install django-cors-headers for security between API and backend.
+$ pip3 install djoser for token Authentication user.
+$ pip3 install pillow for the Python library to resize images.
+$ pip3 install stripe for the payment method library.
 
-- Make it possible to add to the cart: 
+### Step 3: Create a New Django Project
 
-    - Add funtionalities to the vuex, mutations create initializestore(state). 
-                                       to store items in the local store of the web. 
+Now, create a new Django project using the command django-admin startproject project_ecommerce. You can use the manage.py file to run administrative tasks and initialize the database. It also helps to create a superuser. Inside the project_ecommerce folder, you will find an __init__.py file that tells Python how to handle this package. The asgi.py and wsgi.py files are the entry points to the web server. The settings.py file contains global configurations for the entire project, and urls.py is like the table of contents of all the pages in the backend.
 
-    - initialize store in app.vue: beforeCreated() computed function 
-    
-    - add button to product page: computed function
+### Step 4: Configure Django
 
-    - install bullma toast
+To inform Django about the installed package, go to settings.py and add the following lines of code:
 
-- implement a loading bar: store/index.js mutations: setIsLoading(state, status),
-                           product.vue methods: store.commit setisloading true. in the final, we set set loading is false. 
-                           app.vue, add div for loading bar. add styling, go donw the bottom. 
+`INSTALLED_APPS = [
+'rest_framework', 'rest_framework.authtoken', 'corsheaders', 'djoser'
+]`
 
-- set document title to all pages: product.vue bellow axios: document.title = this.product.name + ' | Petstore' 
-                                   home.vue: mounted: document.title = ' Home | Petstore' 
-- view categories: views.py: class CategoryDetail(APIView). 
-                   serializers.py: class CategorySerializer
-                   urls.py(product): import products path views.CategoryDetail
+To configure the corsheaders, add the following code above CommonMiddleware in the MIDDLEWARE section:
 
-                   view(vue): create a Category.vue: ProductBox, components, 
+`'corsheaders.middleware.CorsMiddleware',`
 
-- add search functionality: views.py add the new functionality, import rest.framework.decorators (@api_view(['POST']))
-                            urls.py path('products/search/', views.search)(above of category_slug path)
-                            App.vue: above navbar add the search button. <form method="get" action="/search"> 
-                            
-- view cart: make posible increment or decrement the content.
-            - create Cart.vue 
+### Step 5: Include URLs
 
-- make posible sign up:
+Now, go to urls.py and include API fonts, djoser, and include Pods (which represents a single instance of a running process in your cluster) by adding the following code:
+`path('api/v1/', include('djoser.urls')), path('api/v1/', include('djoser.urls.authtoken')),`
 
-- account page:
-        -create MyAccount.Vue : <Scripts> </Scripts>
-        -change button log in for my account in my account page (App.vue). 
+These functionalities allow you to create users' Authentication tokens.
 
-- checkout page: create Checkout.vue 
+### Step 6: Initialize the Database
 
-- success page: create Success.Vue 
+When create the first models, initialize the database by running the following commands:
+
+`$ python manage.py makemigrations $ python manage.py migrate`
+
+Step 6: Create a Superuser
+
+To create a superuser, use the command:
+
+`python manage.py createsuperuser`
+
+### Step 7: Run the server
+
+Finally, run the server using the command:
+
+`python manage.py runserver`
+
+### Set up Vue
+
+To install and set up Vue, a JavaScript framework for building user interfaces, you need to follow the steps below
+
+1. Install nodejs.
+2. Install the Vue CLI using the command $ npm install -g @vue/cli.
+3. Create a project using the following command: $ vue create e-commerce_vue. Select "Manually select features" and choose the features that you will use to transcribe the code into real JavaScript, such as babel, router, vuex, CSS Pre-processors, and remove linter. Choose the 3x version for Vue.js, use history mode for router, use dart-sass, store in dedicated config files, and save as e-commerce_vue.
+4. Change to the e-commerce_vue directory using the command cd e-commerce_vue.
+5. Install axios to talk to the backend using the command npm install axios.
+6. Install bulma (CSS framework) using the command npm install bulma.
+7. Run the server using the command `npm run server
+
+### Note from vue frontend part two
+
+To implement a loading bar, we need to make some changes to our store, mutations, and components. In store/index.js, we'll define a new mutation called setIsLoading that takes a status parameter and updates the isLoading state accordingly. We'll use this mutation to set the loading status to true when a request is being made, and false when the request is complete.
+
+In Product.vue, we'll define a new method called setLoading that commits the setIsLoading mutation with a value of true. We'll call this method before making a request to the API, and call it again with a value of false when the request is complete.
+
+To display the loading bar, we'll add a new div element to App.vue with a class of loading-bar. We'll use CSS to style this element and position it at the bottom of the page. The CSS will also define an animation that fills the loading bar from left to right as the isLoading state changes.
+
+To set the document title for all pages, we'll update the document.title property in the mounted hook of each component. In Product.vue, we'll set the title to the product name followed by " | Petstore". In Home.vue, we'll set the title to "Home | Petstore".
+
+To view categories, we'll define a new API endpoint in views.py called CategoryDetail. This endpoint will return the details for a specific category, along with a list of products that belong to that category. We'll also define a new serializer called CategorySerializer to serialize the category data.
+
+In urls.py (product), we'll add a new path for the CategoryDetail view, importing it from views. We'll also update the existing products path to include the category_slug parameter.
+
+In the vue views, we'll create a new component called Category.vue. This component will display a list of products for a specific category. We'll use the ProductBox component to display each product.
+
+To add search functionality, we'll define a new API endpoint in views.py called search. This endpoint will accept a search query via a POST request and return a list of products that match the query. We'll decorate the view with @api_view(['POST']) to specify the HTTP method.
+
+In urls.py, we'll add a new path for the search view above the existing category_slug path.
+
+In App.vue, we'll add a new button to the navigation bar for searching. When the button is clicked, we'll display a search box where the user can enter their query.
+
+To view the cart, we'll create a new component called Cart.vue. This component will display the contents of the user's cart and allow them to increment or decrement the quantity of each item.
+
+To make it possible to sign up, we'll create a new component called MyAccount.vue. We'll change the "Log in" button on the account page to say "My Account", and clicking it will display the MyAccount component.
+
+To create a checkout page, we'll create a new component called Checkout.vue. This component will display the user's cart contents and allow them to enter their shipping and billing information.
+
+Finally, we'll create a new component called Success.vue to display a message to the user when their order has been successfully processed.
