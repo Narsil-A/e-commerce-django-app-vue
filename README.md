@@ -4,10 +4,10 @@
 
 Before we begin, make sure you have the following installed
 
-Python 3
-pip3
-Node.js
-npm
+1. Python 3
+2. pip3
+3. Node.js
+4. npm
 
 ### Step 1: Create a Virtual Environment
 
@@ -17,12 +17,12 @@ After activating the virtual environment, you need to install Django and other r
 
 ### Step 2: Install Django and Required Libraries
 
-$ pip3 install Django
-$ pip3 install django-rest-framework for Web browsable API, Authentication policies, Serialization, and regular function-based views.
-$ pip3 install django-cors-headers for security between API and backend.
-$ pip3 install djoser for token Authentication user.
-$ pip3 install pillow for the Python library to resize images.
-$ pip3 install stripe for the payment method library.
+1. $ pip3 install Django
+2. $ pip3 install django-rest-framework for Web browsable API, Authentication policies, Serialization, and regular function-based views.
+3. $ pip3 install django-cors-headers for security between API and backend.
+4. $ pip3 install djoser for token Authentication user.
+5. $ pip3 install pillow for the Python library to resize images.
+6. $ pip3 install stripe for the payment method library.
 
 ### Step 3: Create a New Django Project
 
