@@ -11,7 +11,7 @@ Before we begin, make sure you have the following installed
 
 ### Step 1: Create a Virtual Environment
 
-Creation of a virtual environment is a crucial step in the development process. To create a virtual environment, use the following command: $ virtualenv venv. Then activate the virtual environment using $ source venv/Scripts/activate.
+Creation of a virtual environment is a crucial step in the development process. To create a virtual environment, use the following command: `$ virtualenv venv` Then activate the virtual environment using `$ source venv/Scripts/activate`.
 
 After activating the virtual environment, you need to install Django and other required libraries. Use the following commands to install Django and its libraries:
 
