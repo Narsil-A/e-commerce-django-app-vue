@@ -26,7 +26,7 @@ After activating the virtual environment, you need to install Django and other r
 
 ### Step 3: Create a New Django Project
 
-Now, create a new Django project using the command django-admin startproject project_ecommerce. You can use the manage.py file to run administrative tasks and initialize the database. It also helps to create a superuser. Inside the project_ecommerce folder, you will find an __init__.py file that tells Python how to handle this package. The asgi.py and wsgi.py files are the entry points to the web server. The settings.py file contains global configurations for the entire project, and urls.py is like the table of contents of all the pages in the backend.
+Now, create a new Django project using the command `django-admin startproject project_ecommerce` Inside the project you can use the manage.py file to run administrative tasks and initialize the database. It also helps to create a superuser. Also, you will find an __init__.py file that tells Python how to handle this package. The asgi.py and wsgi.py files are the entry points to the web server. The settings.py file contains global configurations for the entire project, and urls.py is like the table of contents of all the pages in the backend.
 
 ### Step 4: Configure Django
 
