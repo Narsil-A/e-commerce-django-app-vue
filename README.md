@@ -18,11 +18,11 @@ After activating the virtual environment, you need to install Django and other r
 ### Step 2: Install Django and Required Libraries
 
 1. $ pip3 install Django
-2. $ pip3 install django-rest-framework     (for Web browsable API, Authentication policies, Serialization, and regular function-based views.)
-3. $ pip3 install django-cors-headers       (for security between API and backend.)
-4. $ pip3 install djoser                    (for token Authentication user.)
-5. $ pip3 install pillow                    (for the Python library to resize images.)
-6. $ pip3 install stripe                    (for the payment method library.)
+2. $ pip3 install django-rest-framework     (Web browsable API, Authentication policies, Serialization, and regular function-based views.)
+3. $ pip3 install django-cors-headers       (security between API and backend.)
+4. $ pip3 install djoser                    (token Authentication user.)
+5. $ pip3 install pillow                    (to resize images.)
+6. $ pip3 install stripe                    (payment method )
 
 ### Step 3: Create a New Django Project
 
